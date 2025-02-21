@@ -1,8 +1,13 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 const LoginScreen = ({ navigation }: any) => {
+  const handleLogin = () => {
+    // สามารถเพิ่มการตรวจสอบข้อมูลหรือการล็อกอินที่นี่
+    navigation.navigate("Home"); // เปลี่ยนไปที่หน้า Home
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Log In</Text>
@@ -10,7 +15,7 @@ const LoginScreen = ({ navigation }: any) => {
       <TextInput style={styles.input} placeholder="Email or Mobile Number" keyboardType="email-address" />
       <TextInput style={styles.input} placeholder="Password" secureTextEntry />
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
 
