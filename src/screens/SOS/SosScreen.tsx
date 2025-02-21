@@ -1,28 +1,18 @@
-import React from 'react';
-import { Button, View, Text, StyleSheet } from "react-native";
-import { NavigationProp } from '@react-navigation/native';
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
 
-interface SosScreenProps {
-  navigation: NavigationProp<any>;
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-  },
-});
-
-export function SosScreen({ navigation }: SosScreenProps) {
+const SosScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>SOS Screen</Text>
-      <Button title="Confirm SOS" onPress={() => navigation.navigate("SosConfirm")} />
+      <Text style={styles.title}>SOS Emergency</Text>
+      <Button title="Send SOS Alert" onPress={() => alert("SOS Sent!")} />
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "red" },
+  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20, color: "white" },
+});
+
+export default SosScreen;
