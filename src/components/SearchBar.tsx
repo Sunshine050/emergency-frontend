@@ -11,9 +11,10 @@ const SearchBar = ({ data, setFilteredData }: any) => {
     // กรองข้อมูลทันทีที่พิมพ์
     if (data && setFilteredData) {
       const filteredData = data.filter((item: any) =>
-        item.name.toLowerCase().includes(text.toLowerCase())
+        item.name.toLowerCase().includes(text.toLowerCase()) || // ค้นหาจากชื่อ
+        item.phone.replace(/\D/g, '').includes(text.replace(/\D/g, '')) // ค้นหาจากเบอร์
       );
-      setFilteredData(filteredData); // ส่งผลลัพธ์ที่กรองแล้ว
+      setFilteredData(filteredData); // ส่งผลลัพธ์กลับไปยัง HomeScreen
     }
   };
 
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#cac5c5',
     borderRadius: 20,
     marginBottom: 15,
     paddingHorizontal: 10,

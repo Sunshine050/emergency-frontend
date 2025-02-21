@@ -5,7 +5,7 @@ import { FontAwesome } from "@expo/vector-icons";
 const LoginScreen = ({ navigation }: any) => {
   const handleLogin = () => {
     // สามารถเพิ่มการตรวจสอบข้อมูลหรือการล็อกอินที่นี่
-    navigation.navigate("Home"); // เปลี่ยนไปที่หน้า Home
+    navigation.navigate("Home"); 
   };
 
   return (
