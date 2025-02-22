@@ -6,7 +6,7 @@ import HomeScreen from "../Home/HomeScreen";
 import SosScreen from "../SOS/SosScreen";
 import NearbyScreen from "../Nearby/NearbyScreen";
 import NotificationScreen from "../Notifications/NotificationScreen";
-import { ProfileScreen } from "../Profile/ProfileScreen";
+import ProfileScreen from "../Profile/ProfileScreen";
 import LoginScreen from "../Auth/LoginScreen";
 import RegisterScreen from "../Auth/RegisterScreen";
 import { useNavigation } from "@react-navigation/native";
