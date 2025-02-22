@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";  // FontAwesome Import
 
 const LoginScreen = ({ navigation }: any) => {
   const handleLogin = () => {
@@ -33,6 +33,7 @@ const LoginScreen = ({ navigation }: any) => {
 
       <View style={styles.socialButtons}>
         <TouchableOpacity style={styles.socialButton}>
+          {/* เปลี่ยนเป็นไอคอนที่รองรับใน FontAwesome */}
           <FontAwesome name="apple" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialButton}>

@@ -1,41 +1,37 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';  // ใช้ FontAwesome
+import { useNavigation, useRoute } from '@react-navigation/native'; // ใช้ hook ใหม่
 
-const Navbar = ({ navigation }: any) => {
-  const state = navigation.getState();
-  const currentRoute = state.routes[state.index].name;
+const Navbar = () => {
+  const navigation = useNavigation();
+  const route = useRoute(); // ใช้ route แทน state
 
   return (
     <View style={styles.navbar}>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('Home')} 
-        style={[styles.navItem, currentRoute === 'Home' && styles.navItemActive]}>
-        <FontAwesome name="home" size={26} color={currentRoute === 'Home' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>Home</Text> */}
+        onPress={() => navigation.navigate('Home' as never)} 
+        style={[styles.navItem, route.name === 'Home' && styles.navItemActive]}>
+        <FontAwesome name="home" size={26} color={route.name === 'Home' ? '#146083' : '#fff'} />
       </TouchableOpacity>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('SOS')} 
-        style={[styles.navItem, currentRoute === 'SOS' && styles.navItemActive]}>
-        <FontAwesome name="warning" size={26} color={currentRoute === 'SOS' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>SOS</Text> */}
+        onPress={() => navigation.navigate('SOS' as never)} 
+        style={[styles.navItem, route.name === 'SOS' && styles.navItemActive]}>
+        <FontAwesome name="warning" size={26} color={route.name === 'SOS' ? '#146083' : '#fff'} />
       </TouchableOpacity>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('Nearby')} 
-        style={[styles.navItem, currentRoute === 'Nearby' && styles.navItemActive]}>
-        <FontAwesome name="search" size={26} color={currentRoute === 'Nearby' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>Nearby</Text> */}
+        onPress={() => navigation.navigate('Nearby' as never)} 
+        style={[styles.navItem, route.name === 'Nearby' && styles.navItemActive]}>
+        <FontAwesome name="search" size={26} color={route.name === 'Nearby' ? '#146083' : '#fff'} />
       </TouchableOpacity>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('Profile')} 
-        style={[styles.navItem, currentRoute === 'Profile' && styles.navItemActive]}>
-        <FontAwesome name="user" size={26} color={currentRoute === 'Profile' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>Profile</Text> */}
+        onPress={() => navigation.navigate('Profile' as never)} 
+        style={[styles.navItem, route.name === 'Profile' && styles.navItemActive]}>
+        <FontAwesome name="user" size={26} color={route.name === 'Profile' ? '#146083' : '#fff'} />
       </TouchableOpacity>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   navbar: {
     flexDirection: 'row',
