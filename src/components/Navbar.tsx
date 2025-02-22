@@ -1,10 +1,22 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProp } from '@react-navigation/native';
 
-const Navbar = ({ navigation }: any) => {
+type RootStackParamList = {
+  Home: undefined;
+  SOS: undefined;
+  Nearby: undefined;
+  Profile: undefined;
+};
+
+const Navbar = () => {
+  // ประกาศประเภทของ navigation
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   const state = navigation.getState();
-  const currentRoute = state.routes[state.index].name;
+  const currentRoute = state?.routes[state.index]?.name;
 
   return (
     <View style={styles.navbar}>
@@ -12,25 +24,21 @@ const Navbar = ({ navigation }: any) => {
         onPress={() => navigation.navigate('Home')} 
         style={[styles.navItem, currentRoute === 'Home' && styles.navItemActive]}>
         <FontAwesome name="home" size={26} color={currentRoute === 'Home' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>Home</Text> */}
       </TouchableOpacity>
       <TouchableOpacity 
         onPress={() => navigation.navigate('SOS')} 
         style={[styles.navItem, currentRoute === 'SOS' && styles.navItemActive]}>
         <FontAwesome name="warning" size={26} color={currentRoute === 'SOS' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>SOS</Text> */}
       </TouchableOpacity>
       <TouchableOpacity 
         onPress={() => navigation.navigate('Nearby')} 
         style={[styles.navItem, currentRoute === 'Nearby' && styles.navItemActive]}>
         <FontAwesome name="search" size={26} color={currentRoute === 'Nearby' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>Nearby</Text> */}
       </TouchableOpacity>
       <TouchableOpacity 
         onPress={() => navigation.navigate('Profile')} 
         style={[styles.navItem, currentRoute === 'Profile' && styles.navItemActive]}>
         <FontAwesome name="user" size={26} color={currentRoute === 'Profile' ? '#146083' : '#fff'} />
-        {/* <Text style={styles.navText}>Profile</Text> */}
       </TouchableOpacity>
     </View>
   );
@@ -66,12 +74,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 15,
   },
-//   navText: {
-//     color: '#fff',
-//     marginTop: 3,
-//     fontSize: 12,
-//     fontWeight: 'bold',
-//   },
 });
 
 export default Navbar;

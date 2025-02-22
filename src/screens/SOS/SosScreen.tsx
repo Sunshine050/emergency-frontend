@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import Navbar from '../../components/Navbar'; // นำเข้า Navbar คอมโพเนนต์
 
 const SosScreen = ({ navigation }: any) => {
   return (
@@ -9,7 +8,6 @@ const SosScreen = ({ navigation }: any) => {
       <Button title="Send SOS Alert" onPress={() => alert('SOS Sent!')} />
 
       {/* Navbar */}
-      <Navbar navigation={navigation} />
     </View>
   );
 };

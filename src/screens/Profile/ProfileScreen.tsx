@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
-import Navbar from '../../components/Navbar'; // Import Navbar
 
 interface ProfileScreenProps {
   navigation: NavigationProp<any>;
@@ -26,7 +25,6 @@ export function ProfileScreen({ navigation }: ProfileScreenProps) {
       <Button title="Edit Profile" onPress={() => navigation.navigate("EditProfile")} />
       
       {/* Include the Navbar */}
-      <Navbar navigation={navigation} />
     </View>
   );
 }

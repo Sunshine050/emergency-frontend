@@ -2,7 +2,6 @@ import React, { useState, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Linking, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import SearchBar from '../../components/SearchBar';
-import Navbar from '../../components/Navbar';
 
 const emergencyContacts = [
   { id: '1', name: 'สายด่วนช่วยเหลือสัตว์มีพิษ', icon: 'paw', phone: '1669' },
@@ -90,7 +89,6 @@ const HomeScreen = ({ navigation }: any) => {
           renderItem={renderItem}
           contentContainerStyle={{ paddingBottom: 70 }} // เพิ่มพื้นที่ว่างด้านล่าง
         />
-        <Navbar navigation={navigation} />
       </View>
     </KeyboardAvoidingView>
   );
