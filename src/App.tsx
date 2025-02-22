@@ -8,6 +8,7 @@ import NearbyScreen from "./screens/Nearby/NearbyScreen";
 import NotificationScreen from "./screens/Notifications/NotificationScreen";
 import { ProfileScreen } from "./screens/Profile/ProfileScreen";
 import SosScreen from "./screens/SOS/SosScreen";
+import RequestStatusScreen from "./screens/SOS/RequestStatusScreen";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const App = () => {
         <Stack.Screen name="Notifications" component={NotificationScreen} options={{ title: "Notifications" }} />
         <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: "Profile" }} />
         <Stack.Screen name="SOS" component={SosScreen} options={{ title: "SOS" }} />
+        <Stack.Screen name="RequestStatus" component={RequestStatusScreen} options={{ title: "Request Status" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

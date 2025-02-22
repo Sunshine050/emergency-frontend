@@ -8,6 +8,7 @@ import NearbyScreen from "../screens/Nearby/NearbyScreen";
 import NotificationScreen from "../screens/Notifications/NotificationScreen";
 import { ProfileScreen } from "../screens/Profile/ProfileScreen";
 import SosScreen from "../screens/SOS/SosScreen";
+import RequestStatusScreen from "../screens/SOS/RequestStatusScreen"; // เพิ่มการ import คอมโพเนนต์นี้
 
 export type RootStackParamList = {
   Login: undefined;
@@ -17,6 +18,7 @@ export type RootStackParamList = {
   Notifications: undefined;
   Profile: undefined;
   SOS: undefined;
+  RequestStatusScreen: undefined; // เพิ่มประเภทสำหรับ RequestStatusScreen
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -32,6 +34,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Notifications" component={NotificationScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="SOS" component={SosScreen} />
+        <Stack.Screen name="RequestStatusScreen" component={RequestStatusScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
