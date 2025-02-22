@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import AssessmentPopup from '../../components/AssessmentPopup';
 import IncidentPopup from '../../components/IncidentPopup';
+import Navbar from '../../components/Navbar'; // import Navbar
 
 const SosScreen = ({ navigation }: any) => {
   const [showAssessment, setShowAssessment] = useState(false);
@@ -34,6 +35,9 @@ const SosScreen = ({ navigation }: any) => {
       {/* แสดงป๊อปอัพตามลำดับ */}
       {showAssessment && <AssessmentPopup onClose={handleAssessmentComplete} />}
       {showIncident && <IncidentPopup onClose={handleIncidentComplete} />}
+
+      {/* Navbar */}
+      <Navbar navigation={navigation} />
     </View>
   );
 };
