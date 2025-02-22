@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   View,
   Text,
@@ -6,56 +6,64 @@ import {
   FlatList,
   KeyboardAvoidingView,
   Platform,
+  TouchableOpacity,
 } from "react-native";
-import HospitalCard from "../../components/Nearby/HospitalCard";
+import { useNavigation } from "@react-navigation/native";
+import { FontAwesome5 } from "@expo/vector-icons"; // Import ไอคอน
+import HospitalCard from "../../components/Nearby/HospitalCard"; // คุณสามารถปรับแต่งการ์ดในนี้
 import SearchHospitalBar from "../../components/Nearby/SearchHospitalBar";
+import Navbar from "../../components/Navbar"; // ✅ นำเข้า Navbar
 
 const hospitals = [
   {
     id: "1",
-    name: "Dr. Mia Pramudianti",
-    specialty: "Umum",
-    address:
-      "Panti Bahagia, Jl. Tentara Pelajar No.61, Kemirirejo, Kec. Magelang Tengah",
-    phone: "08123456789", // Add a phone number for testing the filter
+    name: "Chiang Rai Rajabhat University Hospital",
+    specialty: "General Medicine",
+    address: "Nong Bua, Muang District, Chiang Rai",
+    phone: "053123456",
     image: "https://picsum.photos/200/300/?blur",
   },
   {
     id: "2",
-    name: "Dr. John Boss",
-    specialty: "Pediatrician",
-    address: "Jl. Tentara Pelajar No.50, Kemirirejo, Kec. Magelang Tengah",
-    phone: "08987654321", // Add a phone number for testing the filter
+    name: "Chiang Rai Prachanukroh Hospital",
+    specialty: "Emergency Medicine",
+    address: "Sukhumvit Rd, Muang Chiang Rai",
+    phone: "053721234",
     image: "https://picsum.photos/200/300/?blur",
   },
   {
     id: "3",
-    name: "Dr. John Doe",
-    specialty: "Pediatrician",
-    address: "Jl. Tentara Pelajar No.50, Kemirirejo, Kec. Magelang Tengah",
-    phone: "08987654321", // Add a phone number for testing the filter
-    image: "https://picsum.photos/200/300/?blur",
-  },
-  {
-    id: "4",
-    name: "Dr. John Doe",
-    specialty: "Pediatrician",
-    address: "Jl. Tentara Pelajar No.50, Kemirirejo, Kec. Magelang Tengah",
-    phone: "08987654321", // Add a phone number for testing the filter
-    image: "https://picsum.photos/200/300/?blur",
-  },
-  {
-    id: "5",
-    name: "Dr. John Doe",
-    specialty: "Pediatrician",
-    address: "Jl. Tentara Pelajar No.50, Kemirirejo, Kec. Magelang Tengah",
-    phone: "08987654321", // Add a phone number for testing the filter
+    name: "Boonrueng Hospital",
+    specialty: "Pediatrics",
+    address: "Khon Kaen Rd, Muang Chiang Rai",
+    phone: "053222333",
     image: "https://picsum.photos/200/300/?blur",
   },
 ];
 
 const NearbyScreen = () => {
   const [filteredData, setFilteredData] = useState(hospitals);
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <View>
+          <Text style={styles.title}>Hospitals Nearby</Text>
+        </View>
+      ),
+      headerRight: () => (
+        <TouchableOpacity
+          style={styles.notificationIcon}
+          onPress={() => navigation.navigate('NotificationScreen' as never)}
+        >
+          <FontAwesome5 name="bell" size={24} color="black" />
+        </TouchableOpacity>
+      ),
+      headerTitleAlign: "center", // จัดกลาง
+      headerLeft: () => null, // เอาปุ่มย้อนกลับออก
+    });
+  }, [navigation]);
 
   return (
     <KeyboardAvoidingView
@@ -63,16 +71,15 @@ const NearbyScreen = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <View style={styles.container}>
-        <Text style={styles.header}>Hospitals nearby</Text>
-        {/* Use SearchHospitalBar component */}
         <SearchHospitalBar data={hospitals} setFilteredData={setFilteredData} />
         <FlatList
           data={filteredData}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <HospitalCard {...item} />}
-          contentContainerStyle={{ paddingBottom: 50 }} // Add padding to the bottom
+          contentContainerStyle={{ paddingBottom: 50 }}
         />
       </View>
+      <Navbar />
     </KeyboardAvoidingView>
   );
 };
@@ -83,12 +90,13 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#f8f8f8",
   },
-  header: {
-    fontSize: 20,
+  title: {
+    fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 10,
-    marginTop: 25,
-    textAlign: "center",
+    color: "black",
+  },
+  notificationIcon: {
+    marginRight: 15,
   },
 });
 

@@ -4,7 +4,7 @@ import {
   Image, KeyboardAvoidingView, Platform 
 } from 'react-native';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../../components/SearchbarHome/SearchBar';
 import Navbar from '../../components/Navbar';
 import { useNavigation } from '@react-navigation/native';
 

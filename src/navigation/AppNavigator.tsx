@@ -8,7 +8,7 @@ import NearbyScreen from "../screens/Nearby/NearbyScreen";
 import NotificationScreen from "../screens/Notifications/NotificationScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SosScreen from "../screens/SOS/SosScreen";
-import RequestStatusScreen from "../screens/SOS/RequestStatusScreen"; // เพิ่มการ import คอมโพเนนต์นี้
+import RequestStatusScreen from "../screens/SOS/RequestStatusScreen";
 
 // กำหนดประเภทของพารามิเตอร์ที่ใช้ในแต่ละหน้าจอ
 export type RootStackParamList = {
@@ -16,10 +16,11 @@ export type RootStackParamList = {
   Register: undefined;
   Home: undefined;
   Nearby: undefined;
-  NotificationScreen: undefined;  // แก้ชื่อจาก Notifications เป็น Notification
+  NotificationScreen: undefined;
   Profile: undefined;
   SOS: undefined;
-  RequestStatusScreen: undefined; // เพิ่มประเภทสำหรับ RequestStatusScreen
+  RequestStatusScreen: undefined;
+  HospitalDetail: undefined; // เพิ่มประเภทของ param สำหรับ HospitalDetail
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -27,7 +28,11 @@ const Stack = createStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        initialRouteName="Home" // เริ่มต้นที่หน้า Home
+        screenOptions={{ headerShown: false }} // ปิด header สำหรับทุกหน้าจอ
+      >
+        {/* กำหนดหน้าต่างๆ สำหรับแอปพลิเคชัน */}
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
@@ -40,4 +45,5 @@ const AppNavigator = () => {
     </NavigationContainer>
   );
 };
+
 export default AppNavigator;

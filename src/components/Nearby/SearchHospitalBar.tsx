@@ -1,53 +1,52 @@
-import React, { useState } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import React, { useState } from 'react';
+import { TextInput, View, StyleSheet } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
-const SearchHospitalBar = ({ data, setFilteredData }: any) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const SearchBar = ({ data, setFilteredData }: any) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (text: string) => {
     setSearchQuery(text); // อัพเดตค่าคำค้นหาทุกครั้งที่พิมพ์
 
     // กรองข้อมูลทันทีที่พิมพ์
     if (data && setFilteredData) {
-      const filteredData = data.filter(
-        (item: any) =>
-          item.name.toLowerCase().includes(text.toLowerCase()) || // ค้นหาจากชื่อ
-          item.phone.replace(/\D/g, "").includes(text.replace(/\D/g, "")) // ค้นหาจากเบอร์
+      const filteredData = data.filter((item: any) =>
+        item.name.toLowerCase().includes(text.toLowerCase()) || // ค้นหาจากชื่อ
+        item.phone.replace(/\D/g, '').includes(text.replace(/\D/g, '')) // ค้นหาจากเบอร์
       );
       setFilteredData(filteredData); // ส่งผลลัพธ์กลับไปยัง HomeScreen
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Icon name="search" size={20} color="#666" style={styles.icon} />
+    <View style={styles.searchBar}>
+      <FontAwesome name="search" size={20} color="#aaa" />
       <TextInput
-        style={styles.input}
-        placeholder="Search hospitals..."
+        style={styles.searchInput}
+        placeholder="ค้นหา..."
         value={searchQuery}
-        onChangeText={handleSearch} // Trigger search on text change
+        onChangeText={handleSearch} // ค้นหาทุกครั้งที่พิมพ์
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#d9e0f5",
-    padding: 8,
-    borderRadius: 10,
-    marginBottom: 10,
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#cac5c5',
+    borderRadius: 20,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
-  icon: {
-    marginRight: 8,
-  },
-  input: {
+  searchInput: {
     flex: 1,
+    height: 40,
+    marginLeft: 10,
     fontSize: 16,
   },
 });
 
-export default SearchHospitalBar;
+export default SearchBar;

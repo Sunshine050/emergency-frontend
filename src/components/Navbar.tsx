@@ -11,27 +11,44 @@ const Navbar = () => {
     <View style={styles.navbar}>
       <TouchableOpacity 
         onPress={() => navigation.navigate('Home' as never)} 
-        style={[styles.navItem, route.name === 'Home' && styles.navItemActive]}>
-        <FontAwesome name="home" size={26} color={route.name === 'Home' ? '#146083' : '#fff'} />
+        style={styles.navItem}>
+        <FontAwesome 
+          name="home" 
+          size={26} 
+          color={route.name === 'Home' ? '#146083' : '#fff'} 
+        />
       </TouchableOpacity>
       <TouchableOpacity 
         onPress={() => navigation.navigate('SOS' as never)} 
-        style={[styles.navItem, route.name === 'SOS' && styles.navItemActive]}>
-        <FontAwesome name="warning" size={26} color={route.name === 'SOS' ? '#146083' : '#fff'} />
+        style={styles.navItem}>
+        <FontAwesome 
+          name="warning" 
+          size={26} 
+          color={route.name === 'SOS' ? '#146083' : '#fff'} 
+        />
       </TouchableOpacity>
       <TouchableOpacity 
         onPress={() => navigation.navigate('Nearby' as never)} 
-        style={[styles.navItem, route.name === 'Nearby' && styles.navItemActive]}>
-        <FontAwesome name="search" size={26} color={route.name === 'Nearby' ? '#146083' : '#fff'} />
+        style={styles.navItem}>
+        <FontAwesome 
+          name="search" 
+          size={26} 
+          color={route.name === 'Nearby' ? '#146083' : '#fff'} 
+        />
       </TouchableOpacity>
       <TouchableOpacity 
         onPress={() => navigation.navigate('Profile' as never)} 
-        style={[styles.navItem, route.name === 'Profile' && styles.navItemActive]}>
-        <FontAwesome name="user" size={26} color={route.name === 'Profile' ? '#146083' : '#fff'} />
+        style={styles.navItem}>
+        <FontAwesome 
+          name="user" 
+          size={26} 
+          color={route.name === 'Profile' ? '#146083' : '#fff'} 
+        />
       </TouchableOpacity>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   navbar: {
     flexDirection: 'row',
@@ -56,11 +73,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 5,
     borderRadius: 12,
-  },
-  navItemActive: {
-    backgroundColor: '#1a1a1a', 
-    paddingVertical: 10,
-    borderRadius: 15,
   },
 });
 

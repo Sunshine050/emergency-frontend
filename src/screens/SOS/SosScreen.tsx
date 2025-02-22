@@ -1,8 +1,8 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import AssessmentPopup from '../../components/AssessmentPopup';
-import IncidentPopup from '../../components/IncidentPopup';
+import AssessmentPopup from '../../components/sos/AssessmentPopup';
+import IncidentPopup from '../../components/sos/IncidentPopup';
 import Navbar from '../../components/Navbar';
 import { useNavigation } from '@react-navigation/native';
 
