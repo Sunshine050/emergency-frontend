@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';  // ใช้ FontAwesome
 
 const Navbar = ({ navigation }: any) => {
   const state = navigation.getState();
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   navItem: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '25%',
+    width: '20%',  
     paddingVertical: 8,
     paddingHorizontal: 5,
     borderRadius: 12,
@@ -66,12 +66,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 15,
   },
-//   navText: {
-//     color: '#fff',
-//     marginTop: 3,
-//     fontSize: 12,
-//     fontWeight: 'bold',
-//   },
 });
 
 export default Navbar;

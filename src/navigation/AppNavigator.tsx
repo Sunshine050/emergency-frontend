@@ -10,12 +10,13 @@ import { ProfileScreen } from "../screens/Profile/ProfileScreen";
 import SosScreen from "../screens/SOS/SosScreen";
 import RequestStatusScreen from "../screens/SOS/RequestStatusScreen"; // เพิ่มการ import คอมโพเนนต์นี้
 
+// กำหนดประเภทของพารามิเตอร์ที่ใช้ในแต่ละหน้าจอ
 export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Home: undefined;
   Nearby: undefined;
-  Notifications: undefined;
+  NotificationScreen: undefined;  // แก้ชื่อจาก Notifications เป็น Notification
   Profile: undefined;
   SOS: undefined;
   RequestStatusScreen: undefined; // เพิ่มประเภทสำหรับ RequestStatusScreen
@@ -31,7 +32,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Nearby" component={NearbyScreen} />
-        <Stack.Screen name="Notifications" component={NotificationScreen} />
+        <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="SOS" component={SosScreen} />
         <Stack.Screen name="RequestStatusScreen" component={RequestStatusScreen} />
@@ -39,5 +40,4 @@ const AppNavigator = () => {
     </NavigationContainer>
   );
 };
-
 export default AppNavigator;
