@@ -6,7 +6,7 @@ import RegisterScreen from "./screens/Auth/RegisterScreen";
 import HomeScreen from "./screens/Home/HomeScreen";
 import NearbyScreen from "./screens/Nearby/NearbyScreen";
 import NotificationScreen from "./screens/Notifications/NotificationScreen";
-import { ProfileScreen } from "./screens/Profile/ProfileScreen";
+import ProfileScreen from './screens/Profile/ProfileScreen';
 import SosScreen from "./screens/SOS/SosScreen";
 import RequestStatusScreen from "./screens/SOS/RequestStatusScreen";
 
