@@ -7,6 +7,8 @@ import {
   Linking,
 } from "react-native";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { Image } from "react-native";
+
 
 const RequestStatusScreen = ({ navigation }: any) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -28,7 +30,7 @@ const RequestStatusScreen = ({ navigation }: any) => {
     };
     fetchMunicipalPhone();
 
-    // Simulate progress updates
+    // จำลองการอัปเดตสถานะเป็นระยะทุก 2 วินาที
     const interval = setInterval(() => {
       setCurrentStep((prev) => (prev < 2 ? prev + 1 : prev));
     }, 2000);
