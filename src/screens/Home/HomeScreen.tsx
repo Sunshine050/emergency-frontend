@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { 
   View, Text, StyleSheet, FlatList, TouchableOpacity, Linking, 
-  Image, KeyboardAvoidingView, Platform 
+  KeyboardAvoidingView, Platform 
 } from 'react-native';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import SearchBar from '../../components/SearchbarHome/SearchBar';
@@ -35,15 +35,10 @@ const HomeScreen: React.FC = () => {
   const [filteredData, setFilteredData] = useState(emergencyContacts);
   const navigation = useNavigation();
 
+  
+
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
-        <TouchableOpacity style={styles.profileContainer}>
-          <Image
-            source={{ uri: '#' }}
-            style={styles.profileImage}/>
-        </TouchableOpacity>
-      ),
       headerTitle: () => <Text style={styles.title}>เบอร์ติดต่อฉุกเฉิน</Text>,
       headerRight: () => (
         <TouchableOpacity style={styles.notificationIcon} onPress={() => navigation.navigate('Notifications' as never)}>
@@ -51,6 +46,7 @@ const HomeScreen: React.FC = () => {
         </TouchableOpacity>
       ),
       headerTitleAlign: 'center',
+      headerLeft: () => null, // ลบปุ่มย้อนกลับ
     });
   }, [navigation]);
 
@@ -72,7 +68,6 @@ const HomeScreen: React.FC = () => {
       <FontAwesome name="phone" size={24} color="#fff" style={styles.phoneIcon} />
     </TouchableOpacity>
   );
-  
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -94,26 +89,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fefefe', // พื้นหลังสีฟ้าอ่อน
+    backgroundColor: '#fefefe',
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#0c0c0c', // สีน้ำเงินเข้ม
+    color: '#0c0c0c',
   },
-  profileContainer: {
-    padding: 10,
-  },
-  profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#64B5F6', // สีฟ้าสว่าง
-    borderWidth: 0.5,  // ขอบหนา 2px
-    borderColor: '#000', // สีขอบเป็นดำ
-},
-
   notificationIcon: {
     padding: 10,
   },
@@ -123,7 +106,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#36679f', // สีพื้นหลังรายการ
+    backgroundColor: '#36679f',
     elevation: 4,
   },
   icon: { 
@@ -135,11 +118,11 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#FFFFFF', // สีขาว
+    color: '#FFFFFF',
   },
   phone: {
     fontSize: 14,
-    color: '#BBDEFB', // ฟ้าอ่อน
+    color: '#BBDEFB',
   },
   phoneIcon: { 
     marginLeft: 10, 

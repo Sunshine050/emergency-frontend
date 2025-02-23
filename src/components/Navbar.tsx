@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -6,6 +6,22 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 const Navbar = () => {
   const navigation = useNavigation();
   const route = useRoute();
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      if (route.name === 'Home') {
+        // ถ้าอยู่หน้า Home แล้วกดย้อนกลับ
+        e.preventDefault(); // ป้องกันไม่ให้ย้อนกลับ
+        navigation.navigate('Home' as never); 
+      } else {
+        // ถ้าไม่ใช่หน้า Home ป้องกันการย้อนกลับและกลับไปหน้า Home
+        e.preventDefault();
+        navigation.navigate('Home' as never);
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, route]);
 
   return (
     <View style={styles.navbar}>
@@ -45,7 +61,7 @@ const styles = StyleSheet.create({
   navbar: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: '#2C3E50', // สีเทาเข้ม
+    backgroundColor: '#2C3E50',
     paddingVertical: 2,
     paddingBottom: 0,
     position: 'absolute',
@@ -53,8 +69,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     borderTopLeftRadius: 25,
-    borderTopRightRadius: 25, // มุมโค้ง
-    elevation: 20, // เงา
+    borderTopRightRadius: 25,
+    elevation: 20,
   },
   navItem: {
     alignItems: 'center',
@@ -62,22 +78,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   iconWrapper: {
-    width: 50, // กำหนดขนาดให้เท่ากัน
-    height: 50, // กำหนดขนาดให้เท่ากัน
-    borderRadius: 25, // ทำให้เป็นวงกลม
-    backgroundColor: '#2C3E50', // สีพื้นหลัง
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#2C3E50',
     alignItems: 'center',
     justifyContent: 'center',
   },
   activeIconWrapper: {
-    backgroundColor: '#1ABC9C', // สีเมื่อปุ่มถูกเลือก
-    padding: 10, // ลดขนาด padding ให้เหมาะสม
-    borderRadius: 25, // รูปวงกลม
+    backgroundColor: '#1ABC9C',
+    padding: 10,
+    borderRadius: 25,
     transform: [{ translateY: -8 }],
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
-    shadowRadius: 6, // เงาที่เด่นขึ้น
+    shadowRadius: 6,
   },
   activeNavItem: {
     transform: [{ translateY: -6 }],

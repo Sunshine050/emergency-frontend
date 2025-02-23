@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import OnboardingScreen2 from './OnboardingScreen2';
+
 
 const OnboardingScreen1 = () => {
   const navigation = useNavigation();

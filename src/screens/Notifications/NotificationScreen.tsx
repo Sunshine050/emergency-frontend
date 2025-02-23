@@ -27,7 +27,7 @@ const NotificationScreen: React.FC = () => {
   };
 
   const renderItem = ({ item }: { item: any }) => (
-    <View style={styles.notificationItem}>
+    <View key={item.id} style={styles.notificationItem}>
       <Text style={styles.notificationMessage}>{item.message}</Text>
       <TouchableOpacity onPress={() => handleDelete(item.id)} style={styles.deleteButton}>
         <Icon name="trash-outline" size={22} color="#D9534F" />
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#EAF2F8',  // พื้นหลังที่มีสีฟ้าอ่อน
+    backgroundColor: '#EAF2F8',
   },
   notificationItem: {
     flexDirection: 'row',
@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 2,
     backgroundColor: '#FFFFFF',
-    borderRadius: 15,  // มุมโค้งมน
+    borderRadius: 15,
     shadowColor: '#2f1a95',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
-    elevation: 20,  // เพิ่มเงาให้ดูลอย
+    elevation: 20,
     borderWidth: 0.5,
     borderColor: '#E1E8EB',
     marginTop: 5,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     flex: 1,
     textAlign: 'left',
-    lineHeight: 24,  
+    lineHeight: 24,
   },
   deleteButton: {
     padding: 8,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
-    elevation: 3,  // ทำให้ปุ่มมีเงาเมื่อกด
+    elevation: 3,
   },
 });
 
