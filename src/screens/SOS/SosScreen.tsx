@@ -50,8 +50,6 @@ const SosScreen: React.FC = () => {
           </View>
         )}
       </View>
-
-      {/* ✅ Navbar ถูกแยกออกมา และมี Padding เผื่อ */}
       <Navbar />
     </View>
   );

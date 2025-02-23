@@ -41,13 +41,13 @@ const HomeScreen: React.FC = () => {
         <TouchableOpacity style={styles.profileContainer}>
           <Image
             source={{ uri: '#' }}
-            style={[styles.profileImage, { padding: 10, marginLeft: 20, borderWidth: 2, borderColor: 'rgba(0, 0, 0, 0.2)' }]}/>
+            style={styles.profileImage}/>
         </TouchableOpacity>
       ),
       headerTitle: () => <Text style={styles.title}>เบอร์ติดต่อฉุกเฉิน</Text>,
       headerRight: () => (
         <TouchableOpacity style={styles.notificationIcon} onPress={() => navigation.navigate('Notifications' as never)}>
-          <FontAwesome5 name="bell" size={30} color="black" />
+          <FontAwesome5 name="bell" size={24} color="#333" />
         </TouchableOpacity>
       ),
       headerTitleAlign: 'center',
@@ -59,15 +59,20 @@ const HomeScreen: React.FC = () => {
   };
 
   const renderItem = ({ item }: { item: any }) => (
-    <TouchableOpacity style={styles.item} onPress={() => handleCall(item.phone)}>
-      <FontAwesome name={item.icon as any} size={24} color="#0e0d0d" style={styles.icon} />
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => handleCall(item.phone)}
+      activeOpacity={0.8}  
+    >
+      <FontAwesome name={item.icon as any} size={24} color="#fff" style={styles.icon} />
       <View style={styles.info}>
         <Text style={styles.name}>{item.name}</Text>  
         <Text style={styles.phone}>{item.phone}</Text>  
       </View>
-      <FontAwesome name="phone" size={24} color="#0e0d0d" style={styles.phoneIcon} />
+      <FontAwesome name="phone" size={24} color="#fff" style={styles.phoneIcon} />
     </TouchableOpacity>
   );
+  
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -89,15 +94,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#fefefe', // พื้นหลังสีฟ้าอ่อน
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    flex: 1,
-    color: '#333',
-    marginVertical: 10,
+    color: '#0c0c0c', // สีน้ำเงินเข้ม
   },
   profileContainer: {
     padding: 10,
@@ -106,7 +109,11 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-  },
+    backgroundColor: '#64B5F6', // สีฟ้าสว่าง
+    borderWidth: 0.5,  // ขอบหนา 2px
+    borderColor: '#000', // สีขอบเป็นดำ
+},
+
   notificationIcon: {
     padding: 10,
   },
@@ -116,20 +123,27 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#909ca0',
+    backgroundColor: '#36679f', // สีพื้นหลังรายการ
+    elevation: 4,
   },
-  icon: { marginRight: 15 },
-  info: { flex: 1 },
+  icon: { 
+    marginRight: 15, 
+  },
+  info: { 
+    flex: 1, 
+  },
   name: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0d0c0c',
+    color: '#FFFFFF', // สีขาว
   },
   phone: {
     fontSize: 14,
-    color: '#0d0c0c',
+    color: '#BBDEFB', // ฟ้าอ่อน
   },
-  phoneIcon: { marginLeft: 10 },
+  phoneIcon: { 
+    marginLeft: 10, 
+  },
 });
 
 export default HomeScreen;

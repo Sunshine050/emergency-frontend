@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Navbar from '../../components/Navbar';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }: { navigation: any }) {
   const [profileImage, setProfileImage] = useState(null);
   const userName = 'John Doe';
+
+  useLayoutEffect(() => {
+    // Hide the header and back button
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
@@ -33,10 +39,10 @@ export default function ProfileScreen() {
           </TouchableOpacity>
         ))}
       </View>
+      <Navbar /> 
     </View>
   );
 }
-
 const menuItems = [
   { label: 'Profile', icon: 'user' },
   { label: 'Payment Method', icon: 'credit-card' },

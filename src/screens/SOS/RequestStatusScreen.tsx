@@ -39,9 +39,9 @@ const RequestStatusScreen = ({ navigation }: any) => {
   }, []);
 
   const steps = [
-    { id: 0, label: "Move", icon: "ambulance" },
-    { id: 1, label: "Enroute", icon: "route" },
-    { id: 2, label: "Arrive", icon: "hospital" },
+    { id: 0, label: "Move", icon: "ambulance",},
+    { id: 1, label: "Enroute", icon: "route",},
+    { id: 2, label: "Arrive", icon: "hospital",}
   ];
 
   return (
@@ -72,7 +72,7 @@ const RequestStatusScreen = ({ navigation }: any) => {
                 <FontAwesome5 
                   name={step.icon} 
                   size={20} 
-                  color={currentStep >= index ? "#FFFFFF" : "#757575"}
+                  color={currentStep >= index ? "#FFFFFF" : "#E0E0E0" }
                 />
               </View>
             </React.Fragment>
@@ -94,7 +94,7 @@ const RequestStatusScreen = ({ navigation }: any) => {
       </View>
 
       <View style={styles.ambulanceContainer}>
-        <FontAwesome5 name="ambulance" size={80} color="#2196F3" />
+        <FontAwesome5 name="ambulance" size={110} color="#2196F3" />
         <View style={styles.statusCard}>
           <Text style={styles.statusText}>
             {currentStep === 0 ? "Dispatching ambulance..." :
@@ -187,13 +187,14 @@ const styles = StyleSheet.create({
   },
   ambulanceContainer: {
     alignItems: "center",
-    marginVertical: 40,
+    marginVertical: 30,
+    marginLeft: 25,
   },
   statusCard: {
     backgroundColor: "#F5F5F5",
     padding: 15,
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 30,
     width: "80%",
     alignItems: "center",
   },
@@ -209,7 +210,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     paddingHorizontal: 20,
-    marginTop: "auto",
+    marginTop: "0%",
     marginBottom: 20,
   },
   callButton: {
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    width: "90%",
+    width: "50%",
     marginBottom: 20,
     alignSelf: "center",
     elevation: 3,

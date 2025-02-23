@@ -6,26 +6,26 @@ const SearchBar = ({ data, setFilteredData }: any) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (text: string) => {
-    setSearchQuery(text); // อัพเดตค่าคำค้นหาทุกครั้งที่พิมพ์
+    setSearchQuery(text);
 
-    // กรองข้อมูลทันทีที่พิมพ์
     if (data && setFilteredData) {
       const filteredData = data.filter((item: any) =>
-        item.name.toLowerCase().includes(text.toLowerCase()) || // ค้นหาจากชื่อ
-        item.phone.replace(/\D/g, '').includes(text.replace(/\D/g, '')) // ค้นหาจากเบอร์
+        item.name.toLowerCase().includes(text.toLowerCase()) ||
+        item.phone.replace(/\D/g, '').includes(text.replace(/\D/g, ''))
       );
-      setFilteredData(filteredData); // ส่งผลลัพธ์กลับไปยัง HomeScreen
+      setFilteredData(filteredData);
     }
   };
 
   return (
     <View style={styles.searchBar}>
-      <FontAwesome name="search" size={20} color="#aaa" />
+      <FontAwesome name="search" size={20} color="#060708" />
       <TextInput
         style={styles.searchInput}
         placeholder="ค้นหา..."
+        placeholderTextColor="#050606"
         value={searchQuery}
-        onChangeText={handleSearch} // ค้นหาทุกครั้งที่พิมพ์
+        onChangeText={handleSearch}
       />
     </View>
   );
@@ -35,17 +35,21 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#cac5c5',
+    backgroundColor: '#E3F2FD',
     borderRadius: 20,
+    borderWidth: 1.5,
+    borderColor: '#05080b',
     marginBottom: 15,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    elevation: 3,
   },
   searchInput: {
     flex: 1,
     height: 40,
     marginLeft: 10,
     fontSize: 16,
+    color: '#050606',
   },
 });
 

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // ใช้เก็บค่า
 import LoginScreen from "../screens/Auth/LoginScreen";
 import RegisterScreen from "../screens/Auth/RegisterScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
@@ -10,8 +11,15 @@ import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SosScreen from "../screens/SOS/SosScreen";
 import RequestStatusScreen from "../screens/SOS/RequestStatusScreen";
 
-// กำหนดประเภทของพารามิเตอร์ที่ใช้ในแต่ละหน้าจอ
+// Import Onboarding Screens
+import OnboardingScreen1 from "../screens/Onboarding/OnboardingScreen1";
+import OnboardingScreen2 from "../screens/Onboarding/OnboardingScreen2";
+import OnboardingScreen3 from "../screens/Onboarding/OnboardingScreen3";
+
 export type RootStackParamList = {
+  Onboarding1: undefined;
+  Onboarding2: undefined;
+  Onboarding3: undefined;
   Login: undefined;
   Register: undefined;
   Home: undefined;
@@ -20,19 +28,49 @@ export type RootStackParamList = {
   Profile: undefined;
   SOS: undefined;
   RequestStatusScreen: undefined;
-  HospitalDetail: undefined; // เพิ่มประเภทของ param สำหรับ HospitalDetail
+  HospitalDetail: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
+  const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkFirstLaunch = async () => {
+      try {
+        const value = await AsyncStorage.getItem("hasSeenOnboarding");
+        if (value === null) {
+          setIsFirstLaunch(true);
+          await AsyncStorage.setItem("hasSeenOnboarding", "true"); // บันทึกค่าไว้
+        } else {
+          setIsFirstLaunch(false);
+        }
+      } catch (error) {
+        console.error("Error reading AsyncStorage:", error);
+      }
+    };
+
+    checkFirstLaunch();
+  }, []);
+
+  if (isFirstLaunch === null) {
+    return null; // แสดงหน้าเปล่าระหว่างโหลดค่า
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home" // เริ่มต้นที่หน้า Home
-        screenOptions={{ headerShown: false }} // ปิด header สำหรับทุกหน้าจอ
+        initialRouteName={isFirstLaunch ? "Onboarding1" : "Login"} // เช็คว่าเคยเห็น Onboarding ไหม
+        screenOptions={{ headerShown: false }}
       >
-        {/* กำหนดหน้าต่างๆ สำหรับแอปพลิเคชัน */}
+        {isFirstLaunch && (
+          <>
+            <Stack.Screen name="Onboarding1" component={OnboardingScreen1} />
+            <Stack.Screen name="Onboarding2" component={OnboardingScreen2} />
+            <Stack.Screen name="Onboarding3" component={OnboardingScreen3} />
+          </>
+        )}
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
@@ -45,5 +83,4 @@ const AppNavigator = () => {
     </NavigationContainer>
   );
 };
-
 export default AppNavigator;

@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';  // นำเข้าไอคอนจาก react-native-vector-icons
-
-// Add the following line to declare the module
-declare module 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const notifications = [
   { id: '1', message: 'แจ้งเตือน: สายด่วนช่วยเหลือสัตว์มีพิษ 1669' },
@@ -33,7 +30,7 @@ const NotificationScreen: React.FC = () => {
     <View style={styles.notificationItem}>
       <Text style={styles.notificationMessage}>{item.message}</Text>
       <TouchableOpacity onPress={() => handleDelete(item.id)} style={styles.deleteButton}>
-        <Icon name="trash-outline" size={20} color="#FF3B30" />
+        <Icon name="trash-outline" size={22} color="#D9534F" />
       </TouchableOpacity>
     </View>
   );
@@ -48,34 +45,45 @@ const NotificationScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#f5f5f5',
+    padding: 10,
+    backgroundColor: '#EAF2F8',  // พื้นหลังที่มีสีฟ้าอ่อน
   },
   notificationItem: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 15,
-    marginBottom: 15,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    shadowColor: '#000',
+    padding: 20,
+    marginBottom: 2,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,  // มุมโค้งมน
+    shadowColor: '#2f1a95',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 20,  // เพิ่มเงาให้ดูลอย
+    borderWidth: 0.5,
+    borderColor: '#E1E8EB',
+    marginTop: 5,
   },
   notificationMessage: {
     fontSize: 16,
     color: '#333',
     fontWeight: '500',
     flex: 1,
+    textAlign: 'left',
+    lineHeight: 24,  
   },
   deleteButton: {
-    marginLeft: 15,
-    padding: 5,
+    padding: 8,
+    backgroundColor: '#FFF1F1',
+    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#FF3B30',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,  // ทำให้ปุ่มมีเงาเมื่อกด
   },
 });
 
