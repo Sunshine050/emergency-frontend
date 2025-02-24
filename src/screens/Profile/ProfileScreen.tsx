@@ -2,12 +2,11 @@ import React, { useLayoutEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Navbar from '../../components/Navbar';
-import LinearGradient from 'react-native-linear-gradient';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function ProfileScreen({ navigation }: { navigation: any }) {
+export default function ProfileScreen() {
+  const navigation = useNavigation();
   const userName = 'John Doe';
-  const route = useRoute();
 
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -34,7 +33,7 @@ export default function ProfileScreen({ navigation }: { navigation: any }) {
   ];
 
   return (
-    <LinearGradient colors={['#4A90E2', '#6A5ACD']} style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.headerText}>My Profile</Text>
       
       <View style={styles.profileContainer}>
@@ -55,12 +54,12 @@ export default function ProfileScreen({ navigation }: { navigation: any }) {
       </View>
 
       <Navbar />
-    </LinearGradient>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', paddingTop: 50 },
+  container: { flex: 1, alignItems: 'center', paddingTop: 50, backgroundColor: '#fff' },
   headerText: { fontSize: 18, fontWeight: 'bold', color: '#4A90E2' },
   profileContainer: { alignItems: 'center', marginTop: 20 },
   profilePlaceholder: {
@@ -73,8 +72,8 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row', alignItems: 'center', paddingVertical: 15,
     borderBottomWidth: 1, borderBottomColor: '#eee',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: 10, paddingHorizontal: 10
+    backgroundColor: '#f9f9f9', borderRadius: 10, paddingHorizontal: 10
   },
-  menuText: { flex: 1, fontSize: 16, marginLeft: 15 },
+  menuText: { flex: 1, fontSize: 16, marginLeft: 15, color: '#333' },
   chevron: { marginRight: 10 }
 });
