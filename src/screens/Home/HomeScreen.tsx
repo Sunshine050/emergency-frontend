@@ -77,7 +77,7 @@ const HomeScreen: React.FC = () => {
           data={filteredData}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
-          contentContainerStyle={{ paddingBottom: 70 }} 
+          contentContainerStyle={{ paddingBottom: 50 }} 
         />
       </View>
       <Navbar />
