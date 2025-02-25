@@ -10,6 +10,7 @@ import NotificationScreen from "../screens/Notifications/NotificationScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SosScreen from "../screens/SOS/SosScreen";
 import RequestStatusScreen from "../screens/SOS/RequestStatusScreen";
+import ProfileInfo from "../screens/Profile/ProfileInfo"; // ✅ เพิ่ม ProfileInfo
 
 // Import Onboarding Screens
 import OnboardingScreen1 from "../screens/Onboarding/OnboardingScreen1";
@@ -26,6 +27,7 @@ export type RootStackParamList = {
   Nearby: undefined;
   NotificationScreen: undefined;
   Profile: undefined;
+  ProfileInfo: undefined; // ✅ เพิ่ม ProfileInfo ให้ Stack Navigator
   SOS: undefined;
   RequestStatusScreen: undefined;
   HospitalDetail: undefined;
@@ -77,10 +79,12 @@ const AppNavigator = () => {
         <Stack.Screen name="Nearby" component={NearbyScreen} />
         <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="ProfileInfo" component={ProfileInfo} /> 
         <Stack.Screen name="SOS" component={SosScreen} />
         <Stack.Screen name="RequestStatusScreen" component={RequestStatusScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
 export default AppNavigator;

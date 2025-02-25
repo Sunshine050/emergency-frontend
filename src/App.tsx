@@ -14,6 +14,9 @@ import RequestStatusScreen from "./screens/SOS/RequestStatusScreen";
 import OnboardingScreen1 from "./screens/Onboarding/OnboardingScreen1";
 import OnboardingScreen2 from "./screens/Onboarding/OnboardingScreen2";
 import OnboardingScreen3 from "./screens/Onboarding/OnboardingScreen3";
+import ProfileInfo from "./screens/Profile/ProfileInfo"; // ✅ ตรวจสอบว่ามีไฟล์นี้จริง
+
+
 
 const Stack = createStackNavigator();
 
@@ -31,6 +34,7 @@ const App = () => {
           <Stack.Screen name="Nearby" component={NearbyScreen} options={{ title: "Nearby Places" }} />
           <Stack.Screen name="Notifications" component={NotificationScreen} options={{ title: "Notifications" }} />
           <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: "Profile" }} />
+          <Stack.Screen name="ProfileInfo" component={ProfileInfo} /> 
           <Stack.Screen name="SOS" component={SosScreen} options={{ title: "SOS" }} />
           <Stack.Screen name="RequestStatus" component={RequestStatusScreen} options={{ title: "Request Status" }} />
         </Stack.Navigator>
