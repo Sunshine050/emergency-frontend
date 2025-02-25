@@ -30,7 +30,6 @@ export type RootStackParamList = {
   ProfileInfo: undefined; 
   SOS: undefined;
   RequestStatusScreen: undefined;
-  HospitalDetail: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
