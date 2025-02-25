@@ -28,10 +28,7 @@ export type RootStackParamList = {
   Recovery: undefined;
   NewPassword: undefined;
   Home: undefined;
-  // Nearby: undefined;
   NotificationScreen: undefined;
-  // Profile: undefined;
-  // SOS: undefined;
   RequestStatusScreen: undefined;
   ProfileInfo: undefined;
 };
