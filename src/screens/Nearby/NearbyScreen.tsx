@@ -99,6 +99,7 @@ const NearbyScreen = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => <HospitalCard {...item} />}
             contentContainerStyle={{ paddingBottom: 50 }}
+            showsVerticalScrollIndicator={false}
           />
         )}
       </View>
