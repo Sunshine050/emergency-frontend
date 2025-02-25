@@ -1,32 +1,39 @@
 import React, { useLayoutEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Navbar from "../../components/Navbar";
 import { useNavigation } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
+
+// กำหนดชนิดของ navigation
+type RootStackParamList = {
+  Login: undefined;
+  ProfileInfo: undefined;
+};
+type NavigationProps = StackNavigationProp<RootStackParamList, "Login">;
 
 export default function ProfileScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
   const userName = "John Doe";
 
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     Alert.alert("Confirm Logout", "Are you sure you want to log out?", [
       { text: "Cancel", style: "cancel" },
       {
         text: "Logout",
-        onPress: () => {
-          console.log("User Logged Out");
-          navigation.reset({
-            index: 0,
-            routes: [{ name: "Login" }],
-          });
+        onPress: async () => {
+          await AsyncStorage.removeItem("userToken");
+          navigation.navigate("Login");  
         },
       },
     ]);
   };
+  
 
   const menuItems = [
     { label: "Profile Info", icon: "user", onPress: () => navigation.navigate("ProfileInfo") },
@@ -39,10 +46,8 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <Text style={styles.headerText}>My Profile</Text>
 
-      {/* Profile Section */}
       <View style={styles.profileContainer}>
         <View style={styles.profilePlaceholder}>
           <Icon name="user" size={50} color="#4A90E2" />
@@ -50,7 +55,6 @@ export default function ProfileScreen() {
         <Text style={styles.profileName}>{userName}</Text>
       </View>
 
-      {/* Menu List */}
       <View style={styles.menuList}>
         {menuItems.map((item, index) => (
           <TouchableOpacity key={index} style={styles.menuItem} onPress={item.onPress}>
@@ -61,7 +65,6 @@ export default function ProfileScreen() {
         ))}
       </View>
 
-      {/* Navbar */}
       <Navbar />
     </View>
   );

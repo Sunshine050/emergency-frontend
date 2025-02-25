@@ -14,7 +14,7 @@ import RequestStatusScreen from "./screens/SOS/RequestStatusScreen";
 import OnboardingScreen1 from "./screens/Onboarding/OnboardingScreen1";
 import OnboardingScreen2 from "./screens/Onboarding/OnboardingScreen2";
 import OnboardingScreen3 from "./screens/Onboarding/OnboardingScreen3";
-import ProfileInfo from "./screens/Profile/ProfileInfo"; // ✅ ตรวจสอบว่ามีไฟล์นี้จริง
+import ProfileInfo from "./screens/Profile/ProfileInfo"; 
 
 
 
