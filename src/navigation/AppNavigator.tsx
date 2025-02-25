@@ -43,7 +43,7 @@ const AppNavigator = () => {
         const value = await AsyncStorage.getItem("hasSeenOnboarding");
         if (value === null) {
           setIsFirstLaunch(true);
-          await AsyncStorage.setItem("hasSeenOnboarding", "true"); // บันทึกค่าไว้
+          await AsyncStorage.setItem("hasSeenOnboarding", "true"); 
         } else {
           setIsFirstLaunch(false);
         }

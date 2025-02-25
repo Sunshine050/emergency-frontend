@@ -67,7 +67,7 @@ const NearbyScreen = () => {
           <Text style={styles.title}>Hospitals Nearby</Text>
         </View>
       ),
-      
+
       headerTitleAlign: "center",
       headerLeft: () => null,
     });
