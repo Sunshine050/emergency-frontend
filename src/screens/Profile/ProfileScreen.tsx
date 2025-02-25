@@ -28,19 +28,38 @@ export default function ProfileScreen() {
         text: "Logout",
         onPress: async () => {
           await AsyncStorage.removeItem("userToken");
-          navigation.navigate("Login");  
+          navigation.navigate("Login");
         },
       },
     ]);
   };
-  
 
   const menuItems = [
-    { label: "Profile Info", icon: "user", onPress: () => navigation.navigate("ProfileInfo") },
-    { label: "Payment Method", icon: "credit-card", onPress: () => console.log("Payment clicked") },
-    { label: "Privacy Policy", icon: "shield", onPress: () => console.log("Privacy clicked") },
-    { label: "Settings", icon: "cog", onPress: () => console.log("Settings clicked") },
-    { label: "Help", icon: "question-circle", onPress: () => console.log("Help clicked") },
+    {
+      label: "Profile Info",
+      icon: "user",
+      onPress: () => navigation.navigate("ProfileInfo"),
+    },
+    {
+      label: "Payment Method",
+      icon: "credit-card",
+      onPress: () => console.log("Payment clicked"),
+    },
+    {
+      label: "Privacy Policy",
+      icon: "shield",
+      onPress: () => console.log("Privacy clicked"),
+    },
+    {
+      label: "Settings",
+      icon: "cog",
+      onPress: () => console.log("Settings clicked"),
+    },
+    {
+      label: "Help",
+      icon: "question-circle",
+      onPress: () => console.log("Help clicked"),
+    },
     { label: "Logout", icon: "sign-out", onPress: handleLogout },
   ];
 
@@ -57,15 +76,24 @@ export default function ProfileScreen() {
 
       <View style={styles.menuList}>
         {menuItems.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.menuItem} onPress={item.onPress}>
+          <TouchableOpacity
+            key={index}
+            style={styles.menuItem}
+            onPress={item.onPress}
+          >
             <Icon name={item.icon} size={23} color="#4A90E2" />
             <Text style={styles.menuText}>{item.label}</Text>
-            <Icon name="chevron-right" size={20} color="#ccc" style={styles.chevron} />
+            <Icon
+              name="chevron-right"
+              size={20}
+              color="#ccc"
+              style={styles.chevron}
+            />
           </TouchableOpacity>
         ))}
       </View>
 
-      <Navbar />
+      {/* <Navbar /> */}
     </View>
   );
 }

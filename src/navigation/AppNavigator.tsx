@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage"; 
+import AsyncStorage from "@react-native-async-storage/async-storage"; // ใช้เก็บค่า
+
+// Tab Navigator
+import TabNavigator from "./TabNavigator";
+
+// Screens
 import LoginScreen from "../screens/Auth/LoginScreen";
 import RegisterScreen from "../screens/Auth/RegisterScreen";
-import HomeScreen from "../screens/Home/HomeScreen";
-import NearbyScreen from "../screens/Nearby/NearbyScreen";
+import RecoveryScreen from "../screens/Auth/recovery/RecoveryScreen";
+import NewPasswordScreen from "../screens/Auth/recovery/NewPasswordScreen";
 import NotificationScreen from "../screens/Notifications/NotificationScreen";
-import ProfileScreen from "../screens/Profile/ProfileScreen";
-import SosScreen from "../screens/SOS/SosScreen";
 import RequestStatusScreen from "../screens/SOS/RequestStatusScreen";
 import ProfileInfo from "../screens/Profile/ProfileInfo"; 
 
@@ -23,18 +25,21 @@ export type RootStackParamList = {
   Onboarding3: undefined;
   Login: undefined;
   Register: undefined;
+  Recovery: undefined;
+  NewPassword: undefined;
   Home: undefined;
-  Nearby: undefined;
+  // Nearby: undefined;
   NotificationScreen: undefined;
-  Profile: undefined;
-  ProfileInfo: undefined; 
-  SOS: undefined;
+  // Profile: undefined;
+  // SOS: undefined;
   RequestStatusScreen: undefined;
+  ProfileInfo: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
+  AsyncStorage.clear(); // for dev: force show onboarding
   const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -60,30 +65,26 @@ const AppNavigator = () => {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {isFirstLaunch ? (
-          <>
-            <Stack.Screen name="Onboarding1" component={OnboardingScreen1} />
-            <Stack.Screen name="Onboarding2" component={OnboardingScreen2} />
-            <Stack.Screen name="Onboarding3" component={OnboardingScreen3} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Nearby" component={NearbyScreen} />
-            <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-            <Stack.Screen name="ProfileInfo" component={ProfileInfo} /> 
-            <Stack.Screen name="SOS" component={SosScreen} />
-            <Stack.Screen name="RequestStatusScreen" component={RequestStatusScreen} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
-  );  
+    <Stack.Navigator
+      initialRouteName={isFirstLaunch ? "Onboarding1" : "Login"} // เช็คว่าเคยเห็น Onboarding ไหม
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="Onboarding1" component={OnboardingScreen1} />
+      <Stack.Screen name="Onboarding2" component={OnboardingScreen2} />
+      <Stack.Screen name="Onboarding3" component={OnboardingScreen3} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="Recovery" component={RecoveryScreen} />
+      <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+      <Stack.Screen name="Home" component={TabNavigator} />
+      <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+      <Stack.Screen
+        name="RequestStatusScreen"
+        component={RequestStatusScreen}
+      />
+      <Stack.Screen name="ProfileInfo" component={ProfileInfo} />
+    </Stack.Navigator>
+  );
 };
 
 export default AppNavigator;
