@@ -6,82 +6,40 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { FontAwesome } from "@expo/vector-icons"; // FontAwesome Import
 
-const RegisterScreen = ({ navigation }: any) => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
+const NewPasswordScreen = ({ navigation }: any) => {
   const [password_1, setPassword_1] = useState("");
   const [password_2, setPassword_2] = useState("");
   const [errorText, setErrorText] = useState("");
 
-  const handleSignUp = () => {
+  const submit = () => {
     navigation.navigate("Login");
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-
+      <Text style={styles.title}>Account Recovery</Text>
       <TextInput
         style={styles.input}
-        placeholder="Full Name"
-        value={fullName}
-        onChangeText={setFullName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Phone Number"
-        keyboardType="phone-pad"
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Date of Birth (DD/MM/YYYY)"
-        value={dateOfBirth}
-        onChangeText={setDateOfBirth}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
         value={password_1}
         onChangeText={setPassword_1}
-        secureTextEntry
+        placeholder="Enter your New Password"
       />
       <TextInput
         style={styles.input}
-        placeholder="Confirm your Password"
         value={password_2}
         onChangeText={setPassword_2}
-        secureTextEntry
+        placeholder="Comfirm your New Password"
       />
 
       {errorText.length > 0 && (
         <Text style={styles.errorText}>{errorText}</Text>
       )}
 
-      <TouchableOpacity style={styles.signUpBtn} onPress={handleSignUp}>
-        <Text style={styles.signUpBtnText}>Sign Up</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress={submit}>
+        <Text style={styles.signUpBtnText}>Submit</Text>
       </TouchableOpacity>
-
-      <Text style={styles.toSignInText}>
-        Already have an account?{" "}
-        <Text
-          style={styles.toSignInLink}
-          onPress={() => navigation.navigate("Login")}
-        >
-          Log In
-        </Text>
-      </Text>
     </View>
   );
 };
@@ -103,7 +61,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     borderColor: "#ccc",
   },
-  signUpBtn: {
+  loginBtn: {
     backgroundColor: "#007BFF",
     padding: 12,
     borderRadius: 8,
@@ -123,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterScreen;
+export default NewPasswordScreen;

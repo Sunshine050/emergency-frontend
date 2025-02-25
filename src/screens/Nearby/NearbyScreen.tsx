@@ -43,10 +43,10 @@ const NearbyScreen = () => {
         }
 
         const validHospitals = data
-          .filter((item) => item.id) 
+          .filter((item) => item.id)
           .map((item) => ({
             ...item,
-            id: String(item.id), 
+            id: String(item.id),
           }));
 
         setHospitals(validHospitals);
@@ -67,7 +67,7 @@ const NearbyScreen = () => {
           <Text style={styles.title}>Hospitals Nearby</Text>
         </View>
       ),
-      
+
       headerTitleAlign: "center",
       headerLeft: () => null,
     });
@@ -96,7 +96,7 @@ const NearbyScreen = () => {
           />
         )}
       </View>
-      <Navbar />
+      {/* <Navbar /> */}
     </KeyboardAvoidingView>
   );
 };
@@ -104,7 +104,7 @@ const NearbyScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
     backgroundColor: "#f8f8f8",
   },
   title: {
