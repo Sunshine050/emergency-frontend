@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage"; // ใช้เก็บค่า
+import AsyncStorage from "@react-native-async-storage/async-storage"; 
 import LoginScreen from "../screens/Auth/LoginScreen";
 import RegisterScreen from "../screens/Auth/RegisterScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
@@ -10,7 +10,7 @@ import NotificationScreen from "../screens/Notifications/NotificationScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SosScreen from "../screens/SOS/SosScreen";
 import RequestStatusScreen from "../screens/SOS/RequestStatusScreen";
-import ProfileInfo from "../screens/Profile/ProfileInfo"; // ✅ เพิ่ม ProfileInfo
+import ProfileInfo from "../screens/Profile/ProfileInfo"; 
 
 // Import Onboarding Screens
 import OnboardingScreen1 from "../screens/Onboarding/OnboardingScreen1";
