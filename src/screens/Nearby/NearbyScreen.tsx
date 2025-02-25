@@ -67,14 +67,7 @@ const NearbyScreen = () => {
           <Text style={styles.title}>Hospitals Nearby</Text>
         </View>
       ),
-      headerRight: () => (
-        <TouchableOpacity
-          style={styles.notificationIcon}
-          onPress={() => navigation.navigate("NotificationScreen" as never)}
-        >
-          <FontAwesome5 name="bell" size={24} color="black" />
-        </TouchableOpacity>
-      ),
+      
       headerTitleAlign: "center",
       headerLeft: () => null,
     });
