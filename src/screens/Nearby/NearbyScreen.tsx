@@ -10,10 +10,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome5 } from "@expo/vector-icons";
 import HospitalCard from "../../components/Nearby/HospitalCard";
 import SearchHospitalBar from "../../components/Nearby/SearchHospitalBar";
-import Navbar from "../../components/Navbar";
 
 interface Hospital {
   id: string;
@@ -91,12 +89,10 @@ const NearbyScreen = () => {
             data={filteredData}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => <HospitalCard {...item} />}
-            contentContainerStyle={{ paddingBottom: 50 }}
             showsVerticalScrollIndicator={false}
           />
         )}
       </View>
-      {/* <Navbar /> */}
     </KeyboardAvoidingView>
   );
 };

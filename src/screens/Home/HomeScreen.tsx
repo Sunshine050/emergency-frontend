@@ -25,8 +25,6 @@ interface contact {
   phone: string;
 }
 
-
-
 const HomeScreen: React.FC = () => {
   const [emergencyContacts, setEmergencyContacts] = useState<any[]>([]);
   const [filteredData, setFilteredData] = useState<any[]>([]);
