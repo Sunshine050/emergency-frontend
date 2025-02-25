@@ -83,8 +83,8 @@ const NearbyScreen = () => {
         {loading ? (
           <ActivityIndicator
             size="large"
-            color="#0000ff"
-            style={{ marginTop: 20 }}
+            color="#36679f"
+            style={{ marginTop: 250 }}
           />
         ) : (
           <FlatList
@@ -92,6 +92,7 @@ const NearbyScreen = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => <HospitalCard {...item} />}
             contentContainerStyle={{ paddingBottom: 50 }}
+            showsVerticalScrollIndicator={false}
           />
         )}
       </View>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { 
   View, Text, StyleSheet, FlatList, TouchableOpacity, Linking, 
-  KeyboardAvoidingView, Platform 
+  KeyboardAvoidingView, Platform, 
+  ActivityIndicator
 } from 'react-native';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import SearchBar from '../../components/SearchbarHome/SearchBar';
@@ -14,6 +15,7 @@ const API_URL = "https://my.api.mockaroo.com/Emergency_contacts?key=27fa01c0";
 const HomeScreen: React.FC = () => {
   const [emergencyContacts, setEmergencyContacts] = useState<any[]>([]);
   const [filteredData, setFilteredData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
 
   // ดึงข้อมูลจาก API
@@ -26,6 +28,8 @@ const HomeScreen: React.FC = () => {
         setFilteredData(data); 
       } catch (error) {
         console.error("Error fetching data: ", error);
+      } finally{
+        setLoading(false);
       }
     };
     fetchData();
@@ -67,12 +71,18 @@ const HomeScreen: React.FC = () => {
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={styles.container}>
         <SearchBar data={emergencyContacts} setFilteredData={setFilteredData} />
-        <FlatList
-          data={filteredData}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderItem}
-          contentContainerStyle={{ paddingBottom: 50 }} 
-        />
+         {/* Show loading indicator while fetching data */}
+         {loading ? (
+          <ActivityIndicator size="large" color="#36679f" style={styles.loader} />
+        ) : (
+          <FlatList
+            data={filteredData}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderItem}
+            contentContainerStyle={{ paddingBottom: 50 }} 
+            showsVerticalScrollIndicator={false}
+          />
+        )}
       </View>
       <Navbar />
     </KeyboardAvoidingView>
@@ -121,6 +131,9 @@ const styles = StyleSheet.create({
   phoneIcon: { 
     marginLeft: 10, 
   },
+  loader:{
+    marginTop: 250,
+  }
 });
 
 export default HomeScreen;
