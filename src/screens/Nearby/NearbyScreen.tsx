@@ -83,8 +83,8 @@ const NearbyScreen = () => {
         {loading ? (
           <ActivityIndicator
             size="large"
-            color="#0000ff"
-            style={{ marginTop: 20 }}
+            color="#36679f"
+            style={{ marginTop: 250 }}
           />
         ) : (
           <FlatList
