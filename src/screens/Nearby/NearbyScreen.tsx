@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,43 +7,58 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome5 } from "@expo/vector-icons"; // Import ไอคอน
-import HospitalCard from "../../components/Nearby/HospitalCard"; // คุณสามารถปรับแต่งการ์ดในนี้
+import { FontAwesome5 } from "@expo/vector-icons";
+import HospitalCard from "../../components/Nearby/HospitalCard";
 import SearchHospitalBar from "../../components/Nearby/SearchHospitalBar";
-import Navbar from "../../components/Navbar"; // ✅ นำเข้า Navbar
+import Navbar from "../../components/Navbar";
 
-const hospitals = [
-  {
-    id: "1",
-    name: "Chiang Rai Rajabhat University Hospital",
-    specialty: "General Medicine",
-    address: "Nong Bua, Muang District, Chiang Rai",
-    phone: "053123456",
-    image: "https://picsum.photos/200/300/?blur",
-  },
-  {
-    id: "2",
-    name: "Chiang Rai Prachanukroh Hospital",
-    specialty: "Emergency Medicine",
-    address: "Sukhumvit Rd, Muang Chiang Rai",
-    phone: "053721234",
-    image: "https://picsum.photos/200/300/?blur",
-  },
-  {
-    id: "3",
-    name: "Boonrueng Hospital",
-    specialty: "Pediatrics",
-    address: "Khon Kaen Rd, Muang Chiang Rai",
-    phone: "053222333",
-    image: "https://picsum.photos/200/300/?blur",
-  },
-];
+interface Hospital {
+  id: string;
+  name: string;
+  specialty: string;
+  address: string;
+  phone?: number;
+  image: string;
+}
+
+const API_URL = "https://66d20b1562816af9a4f5a8b0.mockapi.io/hospitals";
 
 const NearbyScreen = () => {
-  const [filteredData, setFilteredData] = useState(hospitals);
+  const [hospitals, setHospitals] = useState<Hospital[]>([]);
+  const [filteredData, setFilteredData] = useState<Hospital[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const fetchHospitals = async () => {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid API response");
+        }
+
+        const validHospitals = data
+          .filter((item) => item.id) 
+          .map((item) => ({
+            ...item,
+            id: String(item.id), 
+          }));
+
+        setHospitals(validHospitals);
+        setFilteredData(validHospitals);
+      } catch (error) {
+        console.error("Error fetching hospitals:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchHospitals();
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -55,13 +70,13 @@ const NearbyScreen = () => {
       headerRight: () => (
         <TouchableOpacity
           style={styles.notificationIcon}
-          onPress={() => navigation.navigate('NotificationScreen' as never)}
+          onPress={() => navigation.navigate("NotificationScreen" as never)}
         >
           <FontAwesome5 name="bell" size={24} color="black" />
         </TouchableOpacity>
       ),
-      headerTitleAlign: "center", // จัดกลาง
-      headerLeft: () => null, // เอาปุ่มย้อนกลับออก
+      headerTitleAlign: "center",
+      headerLeft: () => null,
     });
   }, [navigation]);
 
@@ -72,12 +87,20 @@ const NearbyScreen = () => {
     >
       <View style={styles.container}>
         <SearchHospitalBar data={hospitals} setFilteredData={setFilteredData} />
-        <FlatList
-          data={filteredData}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <HospitalCard {...item} />}
-          contentContainerStyle={{ paddingBottom: 50 }}
-        />
+        {loading ? (
+          <ActivityIndicator
+            size="large"
+            color="#0000ff"
+            style={{ marginTop: 20 }}
+          />
+        ) : (
+          <FlatList
+            data={filteredData}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <HospitalCard {...item} />}
+            contentContainerStyle={{ paddingBottom: 50 }}
+          />
+        )}
       </View>
       <Navbar />
     </KeyboardAvoidingView>
